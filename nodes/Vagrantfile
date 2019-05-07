@@ -42,8 +42,8 @@ rpm -Uvh https://yum.puppetlabs.com/puppet5/puppet5-release-el-7.noarch.rpm
 # puppet installation plus some other utilities
 yum install -y puppet-agent vim git xauth
 echo -e "\n[main]\nenvironment = $PUPPET_ENV" >> /etc/puppetlabs/puppet/puppet.conf
-echo -e "\n[agent]\nserver = puppet-master.dev.lsst.org" >> /etc/puppetlabs/puppet/puppet.conf
-echo -e "10.0.0.250\tpuppet-master\tpuppet-master.dev.lsst.org" > /etc/hosts
+echo -e "\n[agent]\nserver = puppet-master.slac.stanford.edu" >> /etc/puppetlabs/puppet/puppet.conf
+echo -e "10.0.0.250\tpuppet-master\tpuppet-master.slac.stanford.edu" > /etc/hosts
 /opt/puppetlabs/puppet/bin/puppet agent -t
 chmod 755 /opt/puppetlabs/puppet/cache/
 SCRIPT

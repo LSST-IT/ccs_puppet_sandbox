@@ -18,6 +18,6 @@ puppet_enc_repo: https://github.com/lsst-dm/puppet-enc.git
 puppet_enc_branch: avillalobos_enc_improvement 
 puppet_enc_path: '/etc/puppetlabs/code/enc/'
 
-puppet_enc_config_repo: https://github.com/lsst/cl_puppet_nodes_database.git
+puppet_enc_config_repo: https://github.com/LSST-IT/ccs_puppet_nodes_database.git
 puppet_enc_config_branch: master
 
