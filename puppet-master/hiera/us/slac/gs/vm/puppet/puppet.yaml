@@ -5,8 +5,8 @@
 
 r10k_org: "lsst.org"
 
-dns_alt_names: "gs-puppet-master.dev.lsst.org,puppet-master.dev.lsst.org"
-puppet_master_certname: "puppet-master.dev.lsst.org"
+dns_alt_names: "gs-puppet-master.slac.us.stanford.edu,puppet-master.slac.stanford.edu"
+puppet_master_certname: "puppet-master.slac.stanford.edu"
 
 autosign_servers:
         - "dev.lsst.org"

@@ -1,0 +1,23 @@
+---
+# Defaults will be over-written by per-guest values
+defaults:
+        box: centos/7
+        memory: 512
+        env:
+                PUPFROMDEFAULT: fromdefault
+
+nodes:
+
+        lsst-uno01:
+                hostname: "lsst-uno01.slac.stanford.edu"
+                ip: "10.0.0.20"
+                memory: 1024
+                cpu: 1
+                puppet_environment: "develop"
+
+        lsst-uno02:
+                hostname: "lsst-uno02.slac.stanford.edu"
+                ip: "10.0.0.40"
+                memory: 1024
+                cpu: 1
+                puppet_environment: "develop"

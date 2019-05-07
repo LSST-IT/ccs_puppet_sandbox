@@ -6,10 +6,10 @@ IP=$2
 rpm -Uvh https://yum.puppetlabs.com/puppet5/puppet5-release-el-7.noarch.rpm
 yum install -y puppetserver git
 sed -i 's#\-Xms2g#\-Xms512m#g;s#\-Xmx2g#\-Xmx512m#g' /etc/sysconfig/puppetserver
-echo -e "certname = puppet-master.dev.lsst.org" >> /etc/puppetlabs/puppet/puppet.conf
+echo -e "certname = gs-puppet-master.slac.us.stanford.edu" >> /etc/puppetlabs/puppet/puppet.conf
 echo -e "\n[main]\nenvironment = production" >> /etc/puppetlabs/puppet/puppet.conf
-echo -e "\n[agent]\nserver = puppet-master.dev.lsst.org" >> /etc/puppetlabs/puppet/puppet.conf
-echo -e "${IP}\tpuppet-master\tpuppet-master.dev.lsst.org" > /etc/hosts
+echo -e "\n[agent]\nserver = gs-puppet-master.slac.us.stanford.edu" >> /etc/puppetlabs/puppet/puppet.conf
+echo -e "${IP}\tpuppet-master\tgs-puppet-master.slac.us.stanford.edu" > /etc/hosts
 
 sed -i 's#^PATH=.*#PATH=$PATH:/opt/puppetlabs/puppet/bin:$HOME/bin#g' /root/.bash_profile
 /opt/puppetlabs/puppet/bin/gem install r10k
@@ -72,7 +72,7 @@ fi
 
 if [ ! -f /etc/puppetlabs/puppet/autosign.conf ]
 then
-	echo "*.vm.dev.lsst.org" > /etc/puppetlabs/puppet/autosign.conf
+	echo "*.slac.stanford.edu" > /etc/puppetlabs/puppet/autosign.conf
 fi
 
 systemctl enable puppetserver
