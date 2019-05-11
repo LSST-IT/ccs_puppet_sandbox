@@ -3,7 +3,7 @@
 # CCS Extended confiuration
 #################################################################################
 
-ccs_systemd_units:
+ccs::ccs_systemd_units:
         localdb.service:
                 serviceDescription: "CCS Trending Ingest Module"
                 serviceCommand: "localdb"
@@ -16,17 +16,17 @@ monitored_services:
         - rest-server
 
 #Generic configurations comes from CCS Generic configuration
-ccsApplications:
+ccs::ccs_applications:
         - "executable.localdb" : org-lsst-ccs-ats-software-main
         - "executable.rest-server" : org-lsst-ccs-ats-software-main
 
 #################################################################################
 
-localdb_username: ccs # Same username as localdb.statusPersister.properties.hibernate.connection.username
-localdb_password: lsst # Same username as localdb.statusPersister.properties.hibernate.connection.password
-localdb_dbname: atsccsdb
+ccs::localdb::localdb_username: ccs # Same username as localdb.statusPersister.properties.hibernate.connection.username
+ccs::localdb::localdb_password: lsst # Same username as localdb.statusPersister.properties.hibernate.connection.password
+ccs::localdb::localdb_dbname: atsccsdb
 
-localdb:
+ccs::localdb::localdb_configuration:
         ccsGlobal:
                 filepath: /etc/ccs/ccsGlobal.properties
                 properties:

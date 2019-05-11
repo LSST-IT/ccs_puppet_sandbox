@@ -3,7 +3,7 @@
 # CCS Extended confiuration
 #################################################################################
 
-ccs_systemd_units:
+ccs::ccs_systemd_units:
         bonn-shutter.service:
                 serviceDescription: "BONN Shutter"
                 serviceCommand: "bonn-shutter"
@@ -11,7 +11,7 @@ ccs_systemd_units:
 monitored_services:
         - bonn-shutter
 
-ccsApplications:
+ccs::ccs_applications_list:
         - "executable.bonn-shutter" : org-lsst-ccs-ats-software-main
 
 #################################################################################
