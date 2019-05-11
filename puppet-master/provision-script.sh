@@ -6,10 +6,10 @@ IP=$2
 rpm -Uvh https://yum.puppetlabs.com/puppet5/puppet5-release-el-7.noarch.rpm
 yum install -y puppetserver git
 sed -i 's#\-Xms2g#\-Xms512m#g;s#\-Xmx2g#\-Xmx512m#g' /etc/sysconfig/puppetserver
-echo -e "certname = gs-puppet-master.slac.us.stanford.edu" >> /etc/puppetlabs/puppet/puppet.conf
+echo -e "certname = puppet-master.slac.stanford.edu" >> /etc/puppetlabs/puppet/puppet.conf
 echo -e "\n[main]\nenvironment = production" >> /etc/puppetlabs/puppet/puppet.conf
-echo -e "\n[agent]\nserver = gs-puppet-master.slac.us.stanford.edu" >> /etc/puppetlabs/puppet/puppet.conf
-echo -e "${IP}\tpuppet-master\tgs-puppet-master.slac.us.stanford.edu" > /etc/hosts
+echo -e "\n[agent]\nserver = puppet-master.slac.stanford.edu" >> /etc/puppetlabs/puppet/puppet.conf
+echo -e "${IP}\tpuppet-master\tpuppet-master.slac.stanford.edu" > /etc/hosts
 
 sed -i 's#^PATH=.*#PATH=$PATH:/opt/puppetlabs/puppet/bin:$HOME/bin#g' /root/.bash_profile
 /opt/puppetlabs/puppet/bin/gem install r10k
@@ -50,6 +50,15 @@ do
 		echo "dir $f don't exists, creating it from production"
 		ln -s /etc/puppetlabs/code/hieradata/production /etc/puppetlabs/code/hieradata/$f
 	fi
+
+  # Temporary patch all the environment to resolve datacenter as 'vm'
+	# This change doesn't have effect after the puppet master is deployed because this branch is using an ENC
+	# that is providing with this information, so this values are often discarded.
+	if [ -f /etc/puppetlabs/code/environments/$f/site/facts/facts.d/lsst_facts.py ]
+	then
+		sed -i 's/data\[\"datacenter\"\] = fqdn\[1\]/data\[\"datacenter\"\] = \"vm\"/g' /etc/puppetlabs/code/environments/$f/site/facts/facts.d/lsst_facts.py
+		grep "datacenter" /etc/puppetlabs/code/environments/$f/site/facts/facts.d/lsst_facts.py
+	fi
 done
 
 if [ ! -d /opt/puppet-code ]
@@ -72,7 +81,8 @@ fi
 
 if [ ! -f /etc/puppetlabs/puppet/autosign.conf ]
 then
-	echo "*.slac.stanford.edu" > /etc/puppetlabs/puppet/autosign.conf
+	echo "*.us.stanford.edu" > /etc/puppetlabs/puppet/autosign.conf
+	echo "*.slac.stanford.edu" >> /etc/puppetlabs/puppet/autosign.conf
 fi
 
 systemctl enable puppetserver
