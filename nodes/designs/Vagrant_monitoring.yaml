@@ -11,28 +11,28 @@ nodes:
         # Monitoring Cluster
         # ======================================================================
         influx:
-                hostname: "gs-influxdb-node-01.vm.dev.lsst.org"
+                hostname: "gs-influxdb-node-01.slac.stanford.edu"
                 ip: 10.0.0.251
                 memory: 1024
                 cpu: 1
                 puppet_environment: "develop"
 
         grafana:
-                hostname: "gs-grafana-node-01.vm.dev.lsst.org"
+                hostname: "gs-grafana-node-01.slac.stanford.edu"
                 ip: "10.0.0.252"
                 memory: 1024
                 cpu: 1
                 puppet_environment: "develop"
 
         graylog:
-                hostname: "gs-graylog-node-01.vm.dev.lsst.org"
+                hostname: "gs-graylog-node-01.slac.stanford.edu"
                 ip: "10.0.0.253"
                 memory: 2048
                 cpu: 2
                 puppet_environment: "develop"
 
         graylog-secondary:
-                hostname: "gs-graylog-node-02.vm.dev.lsst.org"
+                hostname: "gs-graylog-node-02.slac.stanford.edu"
                 ip: "10.0.0.253"
                 memory: 2048
                 cpu: 2
