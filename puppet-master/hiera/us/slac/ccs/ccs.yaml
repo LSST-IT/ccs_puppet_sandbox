@@ -3,7 +3,6 @@
 ##########################################################
 
 monitoring_enabled: true
-
-ccs::java_version_major: "8u191"
+ccs::java_version_major: "8u211"
 ccs::java_version_minor: "b12"
-ccs::java_url_hash: "2787e4a523244c269598db4e85c51e0c"
+ccs::java_url_hash: "478a62b7d4e34b78b671c754eaaf38ab"
